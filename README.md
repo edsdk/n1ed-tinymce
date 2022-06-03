@@ -1,4 +1,20 @@
-[N1ED](https://n1ed.com) is a free plugin for TinyMCE 5 making level-up for your editor.
+<p align="center">
+    <a href="https://n1ed.com/"><img src="https://n1ed.com/img/favicons/favicon-64x64.png" alt="N1ED" /></a>
+</p>
+
+<h1 align="center">N1ED</h1>
+
+<p align="center">
+    <strong>Create your content block by block using N1ED page builder.</strong>
+</p>
+
+<p align="center">
+    <a href="https://n1ed.com/">Home page</a> ∙ <a href="https://n1ed.com/doc/install-tinymce-plugin/">Install</a> ∙ <a href="https://n1ed.com/demo/">Try Online</a>
+</p>
+
+[![Edit articles with N1ED](https://n1ed.com/img/screenshots/docs/addons/n1ed/n1ed-tinymce.jpg)](https://n1ed.com)
+
+## N1ED is a free plugin for TinyMCE 5 making level-up for your editor.
 
 Main features:
 
@@ -43,6 +59,8 @@ tinymce.init(
 
 N1ED being installed is ready to run without any configuration.
 If you want to change preferences, use free [Dashboard](https://n1ed.com/dashboard) to edit configuration visually.
+
+[![N1ED configuration](https://n1ed.com/img/screenshots/docs/addons/n1ed/n1ed-configuration.png)​](https://n1ed.com)
 
 You can change this configuration as many times you want and it will be automatically applied to your add-on instance linked to it.
 
