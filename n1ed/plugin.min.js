@@ -70,7 +70,7 @@ function getCookie(name) {
 }
 
 
-apiKey = getCookie("N1ED_APIKEY") || apiKey || "TINYDFLT";
+apiKey = getCookie("N1ED_APIKEY") || apiKey || "TINYFLM2";
 n1edHttps = !(getCookie("N1ED_HTTPS") === "false" || n1edHttps === false);
 n1edPrefix = getCookie("N1ED_PREFIX") || n1edPrefix || null;
 n1edHttpsApp = !(getCookie("N1ED_HTTPS_APP") === "false" || n1edHttpsApp === false);
