@@ -48,9 +48,11 @@ if (tinymce.majorVersion == 6) {
             return null;
     }
     apiKey = getOption("apiKey", "string");
-    flmngrOpts = getOption("Flmngr", "object");
-    if (!!flmngrOpts && !!flmngrOpts["apiKey"])
-        apiKey = flmngrOpts["apiKey"];
+    if (!apiKey) {
+        flmngrOpts = getOption("Flmngr", "object");
+        if (!!flmngrOpts && !!flmngrOpts["apiKey"])
+            apiKey = flmngrOpts["apiKey"];
+    }
     version = getOption("version", "string");
     n1edPrefix = getOption("n1edPrefix", "string");
     n1edHttps = getOption("n1edHttps", "boolean");
