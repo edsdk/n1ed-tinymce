@@ -69,3 +69,7 @@ When you've changed your configuration in Dashboard once please make sure you up
 ```
 apiKey: "APIKEY12",
 ```
+
+## Support
+
+Please feel free to ask any questions regarding installation or using sending a letter to [support e-mail](support@helpdesk.edsdk.com).
