@@ -80,7 +80,7 @@ function getCookie(name) {
 }
 
 
-apiKey = getCookie("N1ED_APIKEY") || apiKey || "TINYFLM2";
+apiKey = getCookie("N1ED_APIKEY") || apiKey || "N1EDMDRN";
 n1edHttps = !(getCookie("N1ED_HTTPS") === "false" || n1edHttps === false);
 n1edPrefix = getCookie("N1ED_PREFIX") || n1edPrefix || null;
 n1edHttpsApp = !(getCookie("N1ED_HTTPS_APP") === "false" || n1edHttpsApp === false);
