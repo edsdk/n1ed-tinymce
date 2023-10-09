@@ -1,5 +1,5 @@
 /*!
- * Add-on for including N1ED into your TinyMCE 5
+ * Add-on for including N1ED content builder into your TinyMCE
  * Developer: N1ED
  * Website: https://n1ed.com/
  * License: GPL v3
@@ -16,7 +16,7 @@
 //
 //   VISUAL CONFIGURATION
 //
-//   If you want to configure all N1ED add-ons visually,
+//   If you want to configure all N1ED visually,
 //   just go into your dashboard at:
 //
 //       https://n1ed.com/dashboard
@@ -77,28 +77,23 @@
 
     var protocol = n1edHttps ? "https" : "http";
 
-    // TODO: change to cdn.n1ed.com host
-    //var host = (n1edPrefix ? (n1edPrefix + ".") : "") + "cdn.n1ed.com";
-    var host = (n1edPrefix ? (n1edPrefix + ".") : "") + "cloud.n1ed.com";
-
-    // TODO: change to cdn.n1ed.com form
-    //var urlPlugin = protocol + "://" + host + "/v/" + version + "/plugins/N1EDEco/plugin.js?apiKey=" + apiKey;
-    var urlPlugin = protocol + "://" + host + "/cdn/" + apiKey + "/" + version + "/tinymce/plugins/N1EDEco/plugin.js";
+    var host = (n1edPrefix ? (n1edPrefix + ".") : "") + "cdn.edsdk.com";
+    var urlPlugin = protocol + "://" + host + "/a/" + apiKey + "/plugins/Ecosystem/plugin.js";
 
     // Load Ecosystem plugin manually due to
     // TinyMCE will not accept external_plugins option on the fly
-    tinymce.PluginManager.load('N1EDEco',  urlPlugin);
+    tinymce.PluginManager.load('Ecosystem',  urlPlugin);
 
     tinymce.PluginManager.add(
         PLUGIN_NAME,
         function(ed, url) {
             // TinyMCE 6 does not initialize dependency plugins automatically
             if (tinymce.majorVersion == 6)
-                tinymce.PluginManager.get("N1EDEco")(ed, url);
+                tinymce.PluginManager.get("Ecosystem")(ed, url);
         },
-        ["N1EDEco"] // We can not move N1EDEco in this file due to we need to dynamically
+        ["Ecosystem"] // We can not move Ecosystem in this file due to we need to dynamically
         // embed configuration from your Dashboard into it.
-        // So N1EDEco add-on can be loaded only from CDN
+        // So Ecosystem add-on can be loaded only from CDN
     );
 
 })();
