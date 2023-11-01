@@ -33,7 +33,7 @@ var n1edHttps;
 var n1edPrefixApp;
 var n1edHttpsApp;
 var urlCache;
-window.n1edPluginVersion=202308002;
+window.n1edPluginVersion=202308003;
 if (tinymce.majorVersion == 6) {
     var getOption = function(name, type) {
         var options = tinymce.get()[0].options;
@@ -68,6 +68,18 @@ if (tinymce.majorVersion == 6) {
     n1edPrefixApp = tinymce.settings.n1edPrefixApp;
     n1edHttpsApp = tinymce.settings.n1edHttpsApp;
     urlCache = tinymce.settings.urlCache;
+
+    if (!apiKey) {
+        for (var i=0; i<tinymce.editors.length && !apiKey; i++) {
+            apiKey = tinymce.editors[i].getParam("apiKey");
+            version = tinymce.editors[i].getParam("version");
+            n1edPrefix = tinymce.editors[i].getParam("n1edPrefix");
+            n1edHttps = tinymce.editors[i].getParam("n1edHttps");
+            n1edPrefixApp = tinymce.editors[i].getParam("n1edPrefixApp");
+            n1edHttpsApp = tinymce.editors[i].getParam("n1edHttpsApp");
+            urlCache = tinymce.editors[i].getParam("urlCache");
+        }
+    }
 }
 
 // Cookies may contain data for development purposes (which version to load, from where, etc.).
