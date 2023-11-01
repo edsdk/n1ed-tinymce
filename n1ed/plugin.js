@@ -31,7 +31,7 @@
     var PLUGIN_NAME = "n1ed";
     var DEFAULT_API_KEY = "N1EDMDRN";
 
-    window.n1edPluginVersion=202310004;
+    window.n1edPluginVersion=202311001;
 
     function get(varName, defaultValue) {
         if (window[varName] !== undefined)
@@ -45,17 +45,18 @@
     if (tinymce.majorVersion == 6) {
 
         function getTinyMCE6Option(name, type) {
-            var options = tinymce.get()[0].options;
-            var defaultValue = false;
-            if (type === "string")
-                defaultValue = "";
-            else if (type === "object")
-                defaultValue = {};
-            options.register(name, {processor: type, default: defaultValue});
-            if (options.isSet(name))
-                return options.get(name);
-            else
-                return null;
+            for (var i=0; i<tinymce.get().length; i++) {
+                var options = tinymce.get()[i].options;
+                var defaultValue = false;
+                if (type === "string")
+                    defaultValue = "";
+                else if (type === "object")
+                    defaultValue = {};
+                options.register(name, {processor: type, default: defaultValue});
+                if (options.isSet(name))
+                    return options.get(name);
+            }
+            return null;
         }
 
         apiKey = getTinyMCE6Option("apiKey", "string");
@@ -67,6 +68,23 @@
 
     } else {
         apiKey = tinymce.settings.apiKey;
+        if (!apiKey) {
+            var flmngrOpts = tinymce.settings.Flmngr;
+            if (!!flmngrOpts && !!flmngrOpts["apiKey"])
+                apiKey = flmngrOpts["apiKey"];
+        }
+
+        if (!apiKey) {
+            for (var i = 0; i < tinymce.editors.length && !apiKey; i++) {
+                apiKey = tinymce.editors[i].getParam("apiKey");
+                if (!apiKey) {
+                    var flmngrOpts = tinymce.editors[i].getParam("Flmngr");
+                    if (!!flmngrOpts && !!flmngrOpts["apiKey"])
+                        apiKey = flmngrOpts["apiKey"];
+                }
+            }
+        }
+
     }
     window.TINYMCE_OVERRIDE_API_KEY_PARAM = "OVERRIDE_API_KEY";
     apiKey = window.OVERRIDE_API_KEY || apiKey || DEFAULT_API_KEY;
