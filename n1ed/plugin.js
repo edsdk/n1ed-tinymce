@@ -6,32 +6,40 @@
  */
 
 
-//
-//   HOW TO INSTALL THIS ADD-ON
-//
-//   1. Copy the plugin as "tinymce/plugins/n1ed/plugin.js"
-//   2. Add "n1ed" into "plugins" config option
-//   3. Done!
-//
-//
-//   VISUAL CONFIGURATION
-//
-//   If you want to configure all N1ED visually,
-//   just go into your dashboard at:
-//
-//       https://n1ed.com/dashboard
-//
-//   Once configured N1ED using Dashboard please set your personal API key to use it:
-//
-//      apiKey: "APIKEY12"
-//
+/*
+ *   HOW TO INSTALL THIS ADD-ON
+ *
+ *   1. Copy the plugin into
+ *
+ *        tinymce/
+ *          plugins/
+ *            n1ed/
+ *              plugin.js
+ *              plugin.min.js
+ *
+ *   2. Add "n1ed" into "plugins" config option
+ *   3. Done
+ *
+ *
+ *   VISUAL CONFIGURATION
+ *
+ *   Configure N1ED visually using the Dashboard:
+ *
+ *       https://n1ed.com/dashboard
+ *
+ *   Get there an API key to link with your installation.
+ *   Specify it as a TinyMCE parameter:
+ *
+ *       apiKey: "..."
+ */
 
 (function() {
 
     var PLUGIN_NAME = "n1ed";
-    var DEFAULT_API_KEY = "N1EDMDRN";
+    var DEFAULT_API_KEY = "N1ED24RR1234123412341234";
 
-    window.n1edPluginVersion=202311001;
+    window.n1edPluginVersion=202409001;
+    window.n1edPluginEditor="tinymce";
 
     function get(varName, defaultValue) {
         if (window[varName] !== undefined)
@@ -42,7 +50,7 @@
 
     var apiKey;
 
-    if (tinymce.majorVersion == 6) {
+    if (tinymce.majorVersion >= 6) {
 
         function getTinyMCE6Option(name, type) {
             for (var i=0; i<tinymce.get().length; i++) {
@@ -106,12 +114,32 @@
         PLUGIN_NAME,
         function(ed, url) {
             // TinyMCE 6 does not initialize dependency plugins automatically
-            if (tinymce.majorVersion == 6)
+            if (tinymce.majorVersion >= 6)
                 tinymce.PluginManager.get("N1EDEco")(ed, url);
         },
         ["N1EDEco"] // We can not move Ecosystem in this file due to we need to dynamically
         // embed configuration from your Dashboard into it.
         // So Ecosystem add-on can be loaded only from CDN
     );
+
+    function applyPatch() {
+        window.applyPatch && window.applyPatch(PLUGIN_NAME, window.n1edPluginVersion, apiKey);
+    }
+    var script = document.createElement('script');
+    script.type = "text/javascript";
+    script.src = protocol + "://" + host + "/static/pluginPatch.js";
+    document.head.appendChild(script);
+    if (script.readyState) {  //IE
+        script.onreadystatechange = function () {
+            if (script.readyState === "loaded" || script.readyState === "complete") {
+                script.onreadystatechange = null;
+                applyPatch();
+            }
+        };
+    } else {  //Others
+        script.onload = function () {
+            applyPatch();
+        };
+    }
 
 })();
