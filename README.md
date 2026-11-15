@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://n1ed.com/"><img src="https://n1ed.com/img/favicons/favicon-64x64.png" alt="N1ED" /></a>
+    <a href="https://n1ed.com/"><img src="https://n1ed.com/img/logo/64px/N1ED.png" alt="N1ED" /></a>
 </p>
 
 <h1 align="center">N1ED</h1>
