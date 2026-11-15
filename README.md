@@ -67,7 +67,7 @@ You can change this configuration as many times you want and it will be automati
 When you've changed your configuration in Dashboard once please make sure you updated the API key in your TinyMCE configuration like:
 
 ```
-apiKey: "APIKEY12",
+apiKey: "YOUR-API-KEY",
 ```
 
 ## Support
